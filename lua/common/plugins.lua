@@ -15,6 +15,9 @@ function M.setup()
 
   packer.startup(function()
     local use = packer.use
+ 
+    -- packer himself
+    use 'wbthomason/packer.nvim'   
     
     -- treesitter
     use {
@@ -68,8 +71,14 @@ function M.setup()
       config = function()
         require('gitsigns').setup()
       end
-    }
-  end)
+    } 
+
+    -- markdown previewer
+    use 'iamcco/markdown-preview.nvim'
+
+    -- nvim terminal
+    use 's1n7ax/nvim-terminal'
+   end)
 end
 
 return M
