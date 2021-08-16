@@ -78,8 +78,19 @@ function M.setup()
 
     -- nvim terminal
     use 's1n7ax/nvim-terminal'
-   end)
+
+    use 'junegunn/rainbow_parentheses.vim'
+    use 'norcalli/nvim-colorizer.lua'
+  end)
+
+  require'colorizer'.setup()
+  vim.g['rainbow#max_level'] = 16
+  vim.g['rainbow#pairs'] =  {{'(', ')'}, {'[', ']'}, {'{', '}'}}
+
+  vim.api.nvim_command('autocmd FileType * RainbowParentheses')
 end
+
+
 
 return M
 

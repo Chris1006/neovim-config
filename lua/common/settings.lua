@@ -25,6 +25,7 @@ function M.setup()
   vim.g.loaded_netrwPlugin = 1    -- no need for netrw
   vim.o.backup = false            -- no backup
   vim.o.writebackup = false       -- no write backup
+  vim.o.termguicolors = true
 end
 
 return M
