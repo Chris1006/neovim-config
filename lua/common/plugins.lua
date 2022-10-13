@@ -1,6 +1,3 @@
-local M ={}
-
-function M.setup()
   local execute = vim.api.nvim_command
   local fn = vim.fn
 
@@ -15,26 +12,33 @@ function M.setup()
 
   packer.startup(function()
     local use = packer.use
- 
+
     -- packer himself
-    use 'wbthomason/packer.nvim'   
-    
+    use 'wbthomason/packer.nvim'
+
     -- treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
-    
+
     -- lsp stuff
-    use 'neovim/nvim-lspconfig'
-    use 'kabouzeid/nvim-lspinstall'
-    use 'glepnir/lspsaga.nvim' 
+    use {
+      'neovim/nvim-lspconfig',
+      'williamboman/nvim-lsp-installer',
+    }
+    use 'glepnir/lspsaga.nvim'
     use 'hrsh7th/nvim-compe'
 
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/vim-vsnip-integ'
 
     use 'mhartington/formatter.nvim'
+
+
+    -- icons
+
+    use 'kyazdani42/nvim-web-devicons'
 
     -- cool status bar
     use {
@@ -44,10 +48,12 @@ function M.setup()
 
     -- file manager
     use {
-        'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons'
+    'kyazdani42/nvim-tree.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function() require'nvim-tree'.setup {
+        
+        } end
     }
-
     -- better tab bar
     use 'romgrk/barbar.nvim'
 
@@ -60,39 +66,29 @@ function M.setup()
     use 'glepnir/dashboard-nvim'
 
     -- themes, e.g. nord theme
+    use "lunarvim/colorschemes"
     use 'christianchiarulli/nvcode-color-schemes.vim'
-
+    use "lunarvim/darkplus.nvim"
+    
     -- git stuff
     use {
       'lewis6991/gitsigns.nvim',
-      requires = {
-        'nvim-lua/plenary.nvim'
-      },
       config = function()
         require('gitsigns').setup()
       end
-    } 
-
+    }
     -- markdown previewer
     use 'iamcco/markdown-preview.nvim'
 
     -- nvim terminal
     use 's1n7ax/nvim-terminal'
 
-    use 'junegunn/rainbow_parentheses.vim'
     use 'norcalli/nvim-colorizer.lua'
   end)
 
-  require'colorizer'.setup()
-  vim.g['rainbow#max_level'] = 16
-  vim.g['rainbow#pairs'] =  {{'(', ')'}, {'[', ']'}, {'{', '}'}}
-
-  vim.api.nvim_command('autocmd FileType * RainbowParentheses')
-end
 
 
 
-return M
 
 
 --[[" check for installed plug
