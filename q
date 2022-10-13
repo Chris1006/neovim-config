@@ -26,7 +26,7 @@ function M.setup()
   vim.o.backup = false            -- no backup
   vim.o.writebackup = false       -- no write backup
   vim.o.termguicolors = true
-  vim.o.signcolmn = 'yes'
+  vim.o.signcolmn = 'number'
 end
 
 return M
